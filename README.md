@@ -11,7 +11,7 @@ Installable AI management system for OpenCode. It ships:
 No npm publish needed — install/run directly from GitHub:
 
 ```bash
-npx github:thinhh0x1l/ith-rin-ai-package init ../my-app \
+npx github:thinhh0x1l/ith-rin-AI-package init ../my-app \
   --name "My App" \
   --description "My project" \
   --install "pnpm install" \
@@ -25,20 +25,20 @@ npx github:thinhh0x1l/ith-rin-ai-package init ../my-app \
 Existing project:
 
 ```bash
-npx github:thinhh0x1l/ith-rin-ai-package retrofit ../existing-app --append-agents
+npx github:thinhh0x1l/ith-rin-AI-package retrofit ../existing-app --append-agents
 ```
 
 Other commands:
 
 ```bash
-npx github:thinhh0x1l/ith-rin-ai-package check ../my-app
-npx github:thinhh0x1l/ith-rin-ai-package sync ../my-app --force
+npx github:thinhh0x1l/ith-rin-AI-package check ../my-app
+npx github:thinhh0x1l/ith-rin-AI-package sync ../my-app --force
 ```
 
 Global install:
 
 ```bash
-npm install -g github:thinhh0x1l/ith-rin-ai-package
+npm install -g github:thinhh0x1l/ith-rin-AI-package
 ith-rin init ../my-app
 ```
 
@@ -48,7 +48,7 @@ OpenCode V1 (`plugin` key):
 
 ```json
 {
-  "plugin": ["ith-rin-ai@git+https://github.com/thinhh0x1l/ith-rin-ai-package.git"]
+  "plugin": ["ith-rin-ai@git+https://github.com/thinhh0x1l/ith-rin-AI-package.git"]
 }
 ```
 
@@ -56,7 +56,7 @@ OpenCode V2 (`plugins` key):
 
 ```json
 {
-  "plugins": ["ith-rin-ai@git+https://github.com/thinhh0x1l/ith-rin-ai-package.git"]
+  "plugins": ["ith-rin-ai@git+https://github.com/thinhh0x1l/ith-rin-AI-package.git"]
 }
 ```
 
