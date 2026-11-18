@@ -33,5 +33,6 @@
     "type": "git",
     "url": "git+https://github.com/thinhh0x1l/ith-rin-AI-package.git"
   },
-  "license": "UNLICENSED"
+  "license": "MIT",
+  "author": "ith-rin AI"
 }

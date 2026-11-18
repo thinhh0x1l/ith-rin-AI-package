@@ -99,4 +99,4 @@ See `assets/docs/credits.md` for sources that informed the system. The ith-rin A
 
 ## License
 
-`UNLICENSED` by default. Change `package.json` before publishing or redistributing.
+MIT — see `LICENSE`.
