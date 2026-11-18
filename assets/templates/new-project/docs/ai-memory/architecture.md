@@ -1,18 +1,18 @@
-# Kiến trúc dự án
+# Architecture
 
-## Tổng quan
+## Overview
 
 {{PROJECT_DESCRIPTION}}
 
-## Thành phần
+## Components
 
 - ...
 
-## Luồng dữ liệu
+## Data flow
 
 - ...
 
-## AI architecture (nếu có)
+## AI architecture (if any)
 
 - Text:
 - Image:
@@ -22,10 +22,10 @@
 
 ## Model routing
 
-| Việc | Model/runtime | Ghi chú |
+| Task | Model/runtime | Notes |
 |---|---|---|
 | ... | ... | ... |
 
-## Quyết định
+## Decisions
 
 - ...

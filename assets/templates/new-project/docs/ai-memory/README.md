@@ -1,44 +1,49 @@
 # AI Memory
 
-Bộ nhớ này được bootstrap từ `_core trains` ngày {{DATE}}.
+This project inherits the ith-rin AI system. Read this file first, then the kernel and playbooks.
 
-## Các tầng
+## Layers
 
-- `AGENTS.md` — luật luôn nạp; giữ ngắn.
-- `.opencode/skills/` — kỹ năng nạp theo nhu cầu.
-- `docs/ai-memory/` — kiến trúc, model routing, nguồn tri thức.
-- `docs/sessions/` — biên bản/handoff một lần.
+- `AGENTS.md` — always-on rules; keep short.
+- `docs/ai-memory/` — detailed memory.
+- `.opencode/skills/` — on-demand procedures.
+- `local/` — local-only sources; never commit.
+- `docs/sessions/` — one-off records.
 
-## Đọc gì
+## Read order
 
-- `model-selection.md` — chọn model đọc/viết file quy tắc.
-- `ai-work-management.md` — playbook chia việc, bàn giao, review, verify.
-- `context-management.md` — cách quản lý context 3 tầng.
-- `hub-bootstrap.md` — luôn nạp qua `opencode.json` instructions; route task + evidence.
-- `credits.md` — nguồn tham khảo và ghi công.
-- Nguồn chi tiết: `local/sources/` (local-only, không commit).
+1. `system.md` — system entry.
+2. `kernel/bootstrap.md` — session start.
+3. `kernel/lifecycle.md` — intake to land.
+4. `kernel/contracts.md` — artifacts and gates.
+5. `kernel/routing.md` — task-to-model/tool mapping.
+6. `kernel/memory.md` — what to remember and where.
+7. `kernel/governance.md` — checks and change control.
+8. `playbooks/` — feature, bug, review, migration.
+9. `adapters/` — OpenCode, CLI/scripts, project profile.
+10. `credits.md` — attribution.
 
-## Hệ thống quản lý AI
+## Task lifecycle
 
-Vòng đời task: **Intake → Context → Plan → Execute → Review → Verify → Land**.
+```text
+Intake → Context → Plan → Execute → Review → Verify → Land
+```
 
-Vai trò:
+## Roles
 
-| Vai | Model/agent | Quyền |
+| Role | Model/agent | Permission |
 |---|---|---|
-| Context Collector | Flash/nhẹ | read-only |
-| Planner | Pro/mạnh | read-only |
-| Executor | Flash/coding | write |
-| Reviewer | Pro/độc lập | read-only |
-| Verifier | script + người | bash/read |
-| Orchestrator | người | toàn quyền |
+| Context Collector | lightweight | read-only |
+| Planner | strong | read-only |
+| Executor | fast coding | write |
+| Reviewer | strong/independent | read-only |
+| Verifier | scripts + human | commands/read |
+| Orchestrator | human | full |
 
-Bản đầy đủ của hệ thống: `hub-system.md` (bản copy) hoặc package `ith-rin-ai`.
+## Update
 
-## Cập nhật
+After a session with reusable knowledge, use `session-to-memory` to classify it into docs, a skill or an `AGENTS.md` rule. Do not put long procedures in `AGENTS.md`.
 
-Sau mỗi session có kiến thức tái dùng, dùng skill `session-to-memory` để phân loại thành docs, skill, hoặc luật `AGENTS.md`. Không nhồi tất cả vào `AGENTS.md`.
+## Project notes
 
-## Ghi chú riêng của dự án
-
-- (Thêm quyết định/kiến trúc riêng vào đây hoặc `architecture.md`.)
+- Add project-specific decisions to `architecture.md` or `docs/`.

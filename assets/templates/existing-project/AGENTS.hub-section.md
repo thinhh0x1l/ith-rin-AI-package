@@ -1,12 +1,15 @@
-## Kế thừa từ hub
+## Inherited from the hub
 
-- **Hệ thống quản lý AI:** `docs/ai-memory/hub-system.md` (bản copy); playbook chính: `docs/ai-memory/ai-work-management.md`.
-- **Chọn model:** `docs/ai-memory/model-selection.md`.
-- **Quy ước:** quy tắc riêng của dự án thắng quy tắc chung.
-- **Cập nhật:** dùng skill `session-to-memory` sau session có kiến thức tái dùng.
-- **Nguồn chi tiết:** local-only ở `local/sources/` (không commit).
+- **System entry:** `docs/ai-memory/system.md` (copy).
+- **Kernel:** `docs/ai-memory/kernel/` (principles, roles, lifecycle, contracts, routing, memory, governance, bootstrap).
+- **Playbooks:** `docs/ai-memory/playbooks/` (feature, bug, review, migration).
+- **Adapters:** `docs/ai-memory/adapters/` (OpenCode, CLI/scripts, project profile).
+- **Attribution:** `docs/ai-memory/credits.md`.
+- **Rules:** project rules override hub rules; record conflicts.
+- **Update:** use `session-to-memory` after a session with reusable knowledge.
+- **Private sources:** `local/sources/` only; never commit.
 
-### Ghi chú
+### Note
 
-- Docs đã copy vào `docs/ai-memory/`; không cần link hub.
-- Nếu dùng OpenCode plugin của package, skills/docs do package cung cấp.
+- Docs are copied into `docs/ai-memory/`; no hub link is required.
+- If you use the OpenCode plugin, skills/docs come from the package.

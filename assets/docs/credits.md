@@ -1,6 +1,6 @@
 # Credits
 
-Nguồn tham khảo chi tiết nằm ở `local/sources/credits.md` — local-only, không commit/push.
+Detailed sources are local-only at `local/sources/credits.md` — never committed or published.
 
-- Thương hiệu và cấu trúc vận hành: ith-rin AI.
-- Nội dung gốc thuộc về tác giả tương ứng; xem file local để biết link và license.
+- Brand and operating structure: ith-rin AI.
+- Original content belongs to the respective authors; see the local file for links and licenses.

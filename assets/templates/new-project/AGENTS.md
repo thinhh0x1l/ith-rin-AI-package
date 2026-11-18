@@ -2,65 +2,67 @@
 
 {{PROJECT_DESCRIPTION}}
 
-## Bắt đầu
+## Start
 
-- Đọc `docs/ai-memory/README.md` để hiểu bộ nhớ AI kế thừa.
-- Hệ thống quản lý AI đầy đủ: `docs/ai-memory/hub-system.md` (bản copy) hoặc package `ith-rin-ai`.
-- Đọc `docs/ai-memory/context-management.md` hoặc `ai-work-management.md` khi cần quản lý context/chia việc.
-- Quy tắc riêng của dự án này thắng quy tắc chung.
+- Read `docs/ai-memory/README.md` for inherited memory.
+- Full system: `docs/ai-memory/system.md` or package `ith-rin-ai`.
+- Read `docs/ai-memory/kernel/lifecycle.md` and `contracts.md` before planning.
+- Project rules override hub rules.
 
-## Lệnh
+## Commands
 
-| Việc | Lệnh |
+| Task | Command |
 |---|---|
-| Cài đặt | `{{INSTALL_CMD}}` |
+| Install | `{{INSTALL_CMD}}` |
 | Dev | `{{DEV_CMD}}` |
 | Build | `{{BUILD_CMD}}` |
 | Test | `{{TEST_CMD}}` |
 | Lint | `{{LINT_CMD}}` |
 | Typecheck | `{{TYPECHECK_CMD}}` |
 
-## Cấu trúc
+## Structure
 
-- `src/` — mã nguồn chính.
-- `docs/` — tài liệu và bộ nhớ AI.
-- `docs/sessions/` — biên bản/handoff một lần.
-- `.opencode/skills/` — kỹ năng AI của dự án.
+- `src/` — application code.
+- `docs/` — docs and AI memory.
+- `docs/sessions/` — one-off handoff.
+- `.opencode/skills/` — project skills.
+- `local/` — local-only sources; never commit.
 
-## Quy ước
+## Conventions
 
-- Giữ thay đổi trong phạm vi yêu cầu.
-- Chỉ chạy lint/typecheck trên file thay đổi.
-- Viết test cho hành vi mới hoặc bugfix khi có test framework.
-- Ghi rõ lệnh đã chạy và kết quả khi báo hoàn thành.
+- Keep changes within the requested scope.
+- Run lint/typecheck on changed files.
+- Add tests for new behavior or bug fixes.
+- Report the commands you ran and their results.
 
-## Không được làm
+## Forbidden
 
-- Không commit/push nếu chưa được yêu cầu.
-- Không đưa secrets, token, `.env` vào file hoặc log.
-- Không bịa lệnh, model, hoặc kết quả kiểm thử.
-- Không sửa file ngoài phạm vi yêu cầu.
+- Do not commit or push unless asked.
+- Do not commit secrets, tokens or `.env`.
+- Do not invent commands, models or test results.
+- Do not edit files outside the requested scope.
 
-## Kế thừa từ hub
+## Inheritance
 
-- `docs/ai-memory/model-selection.md` — chọn model đọc rule-md và viết rule-md.
-- `docs/ai-memory/ai-work-management.md` — playbook chia việc, bàn giao, review, verify.
-- `docs/ai-memory/context-management.md` — cách quản lý context 3 tầng.
-- `docs/ai-memory/credits.md` — nguồn tham khảo.
-- Nguồn chi tiết: `local/sources/` (local-only, không commit).
-- Hub gốc (tham khảo): `{{HUB_PATH}}`.
+- `docs/ai-memory/system.md` — system entry.
+- `docs/ai-memory/kernel/` — abstract model.
+- `docs/ai-memory/adapters/` — tool-specific details.
+- `docs/ai-memory/playbooks/` — task procedures.
+- `docs/ai-memory/credits.md` — attribution.
+- Local sources: `local/sources/` (never commit).
+- Hub reference: `{{HUB_PATH}}`.
 
-## Bộ nhớ AI
+## AI memory
 
-- `AGENTS.md` (file này) — luật luôn nạp; giữ ngắn.
-- `docs/ai-memory/` — bộ nhớ chi tiết.
-- `.opencode/skills/` — kỹ năng nạp theo nhu cầu: bắt đầu task bằng `using-hub`, sau session dùng `session-to-memory`.
-- `scripts/` — ledger task: `task-workspace`, `task-start`, `task-done`, `review-package`.
-- `docs/sessions/` — biên bản/handoff một lần.
+- `AGENTS.md` (this file) — always-on rules; keep short.
+- `docs/ai-memory/` — detailed memory.
+- `.opencode/skills/` — on-demand procedures: start with `using-hub`; capture with `session-to-memory`.
+- `scripts/` — task ledger: `task-workspace`, `task-start`, `task-done`, `review-package`.
+- `docs/sessions/` — one-off records.
 
 ## Verify
 
-- Chạy lint/typecheck trên file đổi.
-- Chạy test liên quan.
-- Kiểm tra link trong tài liệu nếu vừa sửa docs.
-- Báo cáo lệnh đã chạy và kết quả thực tế.
+- Run lint/typecheck on changed files.
+- Run related tests.
+- Check links after editing docs.
+- Report the commands and their real output.

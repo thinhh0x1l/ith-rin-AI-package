@@ -1,20 +1,20 @@
 # Projects
 
-Registry các dự án hub đang quản lý. Không ghi code, spec, prompt hay UI implementation ở đây; chỉ link và trạng thái.
+Registry of projects under management. Do not store code, specs, prompts or UI implementation here; link to the project's own files.
 
 | Project | Path | AGENTS.md | opencode.json | Status | Last audit |
 |---|---|---|---|---|---|
 | _template_ | `D:\path\to\project` | `AGENTS.md` | `opencode.json` | active | YYYY-MM-DD |
 
-## Cách thêm dự án
+## Add a project
 
-1. Dự án mới: dùng `bootstrap-project` hoặc `templates/new-project/`.
-2. Dự án đã có: dùng `templates/existing-project/`.
-3. Thêm một dòng vào bảng trên.
-4. Khi audit, cập nhật `Last audit` và ghi chú vào `docs/sessions/`.
+1. New project: use `ith-rin init` or `templates/new-project/`.
+2. Existing project: use `ith-rin retrofit` or `templates/existing-project/`.
+3. Add a row to the table.
+4. On audit, update `Last audit` and record notes in `docs/sessions/`.
 
-## Không đưa vào đây
+## Keep out
 
-- Code, spec, prompt, UI implementation.
-- Secrets, token, `.env`.
-- Chi tiết chỉ một dự án cần; để trong `docs/` của dự án đó.
+- Code, specs, prompts, UI implementation.
+- Secrets, tokens, `.env`.
+- Details that only one project needs; keep them in that project's `docs/`.

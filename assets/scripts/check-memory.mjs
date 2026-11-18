@@ -71,9 +71,14 @@ if (existsSync(skillsDir)) {
 const docsDir = path.join(root, 'docs')
 const linkTargets = [agents]
 if (existsSync(docsDir)) {
-  for (const file of readdirSync(docsDir)) {
-    if (file.endsWith('.md')) linkTargets.push(path.join(docsDir, file))
+  const collect = (dir) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entry.name)
+      if (entry.isDirectory()) collect(p)
+      else if (entry.isFile() && entry.name.endsWith('.md')) linkTargets.push(p)
+    }
   }
+  collect(docsDir)
 }
 const linkPattern = /\[[^\]]*\]\(([^)]+)\)/g
 for (const file of linkTargets) {

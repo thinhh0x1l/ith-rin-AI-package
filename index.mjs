@@ -13,7 +13,7 @@ export default async function ithRinPlugin() {
       if (!cfg.skills.paths.includes(skills)) cfg.skills.paths.push(skills)
 
       cfg.instructions ??= []
-      const bootstrap = path.join(assets, 'docs', 'hub-bootstrap.md')
+      const bootstrap = path.join(assets, 'docs', 'kernel', 'bootstrap.md')
       if (!cfg.instructions.includes(bootstrap)) cfg.instructions.push(bootstrap)
     },
   }

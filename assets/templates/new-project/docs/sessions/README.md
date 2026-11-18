@@ -1,24 +1,24 @@
 # Sessions
 
-Biên bản/handoff một lần. Dùng skill `session-to-memory` để tạo file `YYYY-MM-DD-<topic>.md`.
+One-off handoff and decision records. Use `session-to-memory` to create `YYYY-MM-DD-<topic>.md`.
 
-## Mẫu
+## Template
 
 ```md
-# <Chủ đề>
+# <topic>
 
-- **Mục tiêu:**
-- **Đã đọc / đã làm:**
-- **Quyết định:**
-- **File liên quan:**
-- **Việc tiếp theo:**
-- **Cần người dùng quyết:**
+- Goal:
+- Read / done:
+- Decision:
+- Files:
+- Next:
+- Needs a human decision:
 ```
 
-## Khi nào dùng
+## When to use
 
-- Bàn giao cho phiên/agent khác.
-- Ghi lại một quyết định có ngữ cảnh dài.
-- Tóm tắt một lần điều tra không cần thành skill.
+- Hand off to another session or agent.
+- Record a decision with long context.
+- Summarize an investigation that does not need a skill.
 
-Không dùng thư mục này cho kiến thức tái dùng thường xuyên — đưa vào `docs/ai-memory/` hoặc `.opencode/skills/`.
+Use `docs/` or `.opencode/skills/` for reusable knowledge.

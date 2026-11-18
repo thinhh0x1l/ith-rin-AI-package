@@ -1,123 +1,74 @@
 # ith-rin AI — AI Management System
 
-Đây là **hệ thống quản lý AI tập trung** cho nhiều dự án. AI của một dự án khác nên đọc file này trước, sau đó đọc các tài liệu chi tiết theo nhu cầu. Mục tiêu: mọi dự án vận hành AI theo cùng một hệ thống — chia việc đúng vai, dùng đúng model, giữ đúng bộ nhớ, chứng minh đúng bằng chứng.
+ith-rin AI is an operating model for AI-assisted work across projects. It is split into an abstract kernel, concrete adapters and task playbooks. Read this file first; open only what the task needs.
 
-- Master index: `INDEX.md`.
-- Local-only index: `local/INDEX.md` (không commit); danh sách từ cấm public ở `local/forbidden-terms.md`.
+## Layers
 
-## 1. Hệ thống gồm gì
-
-| Phần | File chính | Trả lời câu hỏi |
+| Layer | Path | Purpose |
 |---|---|---|
-| Luật luôn bật | `AGENTS.md` | AI phải tuân theo gì mỗi phiên |
-| Bootstrap | `docs/hub-bootstrap.md` | Route task mỗi phiên (nạp qua `instructions`) |
-| Quản lý việc | `docs/ai-work-management.md` | Chia việc, bàn giao, review, verify thế nào |
-| Chọn model | `docs/model-selection.md` | Model nào cho việc gì |
-| Quản lý context | `docs/context-management.md` | Context 3 tầng, state file, stable prefix |
-| Nguồn chi tiết (local-only) | `local/sources/` | Case study, nguồn học; không commit/push |
-| Registry dự án | `docs/projects.md` | Dự án nào đang được quản lý |
-| Credits | `docs/credits.md` | Nguồn tham khảo và ghi công |
-| Biên bản | `docs/sessions/` | Handoff, quyết định một lần |
-| Kỹ năng | `.opencode/skills/` | Quy trình nạp theo nhu cầu |
+| Rules | `AGENTS.md` | Always-on contract |
+| Index | `INDEX.md` | Master index public/local |
+| Kernel | `docs/kernel/` | Tool-agnostic model |
+| Adapters | `docs/adapters/` | OpenCode, CLI/scripts, project profile |
+| Playbooks | `docs/playbooks/` | Feature, bug, review, migration |
+| Skills | `.opencode/skills/` | Procedures loaded on demand |
+| Ledger | `scripts/` | Task state and evidence |
+| Templates | `templates/` | Project bootstrap/retrofit |
+| Registry | `docs/projects.md` | Projects under management |
+| Local | `local/` | Private sources and context |
 
-## 2. Đọc theo thứ tự
+## Kernel
 
-**Nhanh (10 phút):** file này + `AGENTS.md`.
+- `docs/kernel/principles.md` — rules that do not change with tools.
+- `docs/kernel/roles.md` — who does what.
+- `docs/kernel/lifecycle.md` — intake to land.
+- `docs/kernel/contracts.md` — artifacts and quality gates.
+- `docs/kernel/routing.md` — task-to-model/tool mapping.
+- `docs/kernel/memory.md` — what to remember and where.
+- `docs/kernel/governance.md` — checks, secrets and change control.
+- `docs/kernel/bootstrap.md` — what to do at session start.
 
-**Đủ để làm việc (30 phút):**
+## Reading paths
 
-1. `docs/model-selection.md` — chọn model.
-2. `docs/ai-work-management.md` — vai trò, chia task, bàn giao, review, verify.
-3. `docs/context-management.md` — cách giữ context.
+**New agent (10 minutes):** `AGENTS.md` → `INDEX.md` → `docs/kernel/bootstrap.md` → `docs/kernel/lifecycle.md`.
 
-**Sâu hơn:** `local/sources/` (local-only, không commit).
+**Working agent (30 minutes):** add `docs/kernel/contracts.md`, `docs/kernel/routing.md`, `docs/kernel/memory.md`.
 
-## 3. Vòng đời một task
+**Implementation:** `docs/adapters/opencode.md` or `docs/adapters/cli-and-scripts.md`.
+
+**Task procedure:** the matching file under `docs/playbooks/`.
+
+**Private sources:** `local/INDEX.md` (never commit).
+
+## Task lifecycle
 
 ```text
-Intake   → chốt goal, constraints, acceptance
-Context  → Flash thu thập, nén thành context brief
-Plan     → Pro phân rã, risk, test strategy, acceptance
-Execute  → Flash/coding model làm theo plan, TDD
-Review   → agent/model độc lập tìm lỗi
-Verify   → chạy lệnh, screenshot, evidence
-Land     → người duyệt, squash/rebase/PR
+Intake → Context → Plan → Execute → Review → Verify → Land
 ```
 
-Mỗi bước có **input, output, cách verify**. Không bước nào tự biến mất.
+Each stage has an input, an output and a gate. The detail is in `docs/kernel/lifecycle.md`.
 
-- Route task: skill `using-hub`.
-- Ledger: `scripts/task-workspace.mjs`, `task-start.mjs`, `task-done.mjs`, `review-package.mjs` (plan dùng heading `## Task N:`).
+## Project adoption
 
-## 4. Vai trò và định tuyến
+- New project: `ith-rin init` or `templates/new-project/`.
+- Existing project: `ith-rin retrofit` or `templates/existing-project/`.
+- Every project should have: a short `AGENTS.md`, `docs/ai-memory/`, `.opencode/skills/` and `opencode.json`.
+- Project rules override hub rules. Sensitive sources stay in the project's `local/`.
 
-| Vai | Model/agent | Quyền | Output |
-|---|---|---|---|
-| Context Collector | Flash/nhẹ | read-only | context brief |
-| Planner | Pro/mạnh | read-only | plan + acceptance |
-| Executor | Flash/coding | write | code + execution report |
-| Reviewer | Pro/độc lập | read-only | findings + verdict |
-| Verifier | script + người | bash/read | evidence |
-| Orchestrator | người | toàn quyền | quyết định |
-
-## 5. Nguyên tắc hệ thống
-
-1. Một task = một output + một cách verify.
-2. Không ai làm hai vai; reviewer không phải người viết.
-3. Bàn giao bằng artifact, không bằng trí nhớ hội thoại.
-4. Model mạnh cho quyết định, model rẻ cho thi hành.
-5. Không có evidence thì chưa xong.
-6. Context: luôn bật ít, nạp theo nhu cầu, chi tiết trong file.
-7. Việc tất định giao script; việc phá hủy cần approval.
-8. Sau session: `session-to-memory` — docs, skill, hoặc luật AGENTS.
-9. Người giữ mục tiêu, ngân sách, quyết định cuối.
-
-## 6. Áp dụng vào một dự án
-
-**Dự án mới:**
-
-```bash
-node "D:\Storage\inen\trainai\_core trains\templates\new-project\bootstrap.mjs" \
-  --target <dir> --name <name> --description <desc> \
-  --install <cmd> --dev <cmd> --build <cmd> --test <cmd> --lint <cmd> --typecheck <cmd>
-```
-
-**Dự án đã có:** dùng `templates/existing-project/`:
-
-1. Copy 3 tài liệu vào `docs/ai-memory/`.
-2. Dán mục “Kế thừa từ hub” vào `AGENTS.md` của dự án.
-3. Merge `opencode.json` (skills + references hub).
-4. Copy 3 skill vào `.opencode/skills/`.
-5. Restart OpenCode, kiểm tra bằng 3 câu hỏi.
-
-**Dự án nào cũng nên có:**
-
-- `AGENTS.md` — luật riêng, ngắn (< 100 dòng).
-- `docs/` — chi tiết dự án, ADR, task.
-- `.opencode/skills/` — quy trình lặp của dự án.
-- `opencode.json` — skills + references tới hub.
-
-## 7. Cập nhật bộ nhớ
-
-Sau mỗi session có kiến thức tái dùng, dùng skill `session-to-memory`:
-
-- Luật luôn đúng cho mọi phiên → `AGENTS.md`.
-- Kiến thức chi tiết/quyết định → `docs/`.
-- Quy trình lặp lại → `.opencode/skills/<name>/SKILL.md`.
-- Một lần/handoff → `docs/sessions/YYYY-MM-DD-<topic>.md`.
-
-Cổng skill (chỉ tạo skill khi cả 7 pass): triggerability, repeatability, knowledge delta, coherence, verifiability, stability, boundary clarity.
-
-## 8. Kiểm tra chất lượng
+## Quality checks
 
 ```bash
 node scripts/check-memory.mjs
+node scripts/check-forbidden-terms.mjs
+node scripts/check-index.mjs
 ```
 
-Kiểm: `AGENTS.md` < 100 dòng, JSON hợp lệ, frontmatter skill, link, secret, placeholder. Nếu có `local/forbidden-terms.json`, `check-memory` cũng gọi `check-forbidden-terms` để chặn từ nhạy cảm rò rỉ ra public. `check-memory` cũng gọi `check-index` để đảm bảo `INDEX.md` liệt kê đủ file public. Chạy trước mỗi commit; CI cũng chạy (phần local-only chỉ chạy khi có file local).
+`check-memory` also runs the other two when their files exist. Run before commit; CI runs the public checks.
 
-## 9. Đọc nguồn gốc
+## Further reading
 
-- `local/sources/source-repos.md` — bản đồ đọc `../core` và `../SKILL` (local-only).
-- `docs/projects.md` — dự án đang quản lý.
-- `templates/` — bộ khởi tạo/retrofit.
+- `docs/adapters/opencode.md` — config, model routing, skills, restart.
+- `docs/adapters/cli-and-scripts.md` — CLI and ledger.
+- `docs/playbooks/feature.md`, `bug.md`, `review.md`, `migration.md`.
+- `docs/projects.md` — project registry.
+- `docs/credits.md` — attribution (generic).
