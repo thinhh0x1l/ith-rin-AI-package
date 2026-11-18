@@ -1,0 +1,37 @@
+{
+  "name": "ith-rin-ai",
+  "version": "0.1.0",
+  "description": "ith-rin AI — installable AI management system for OpenCode: CLI bootstrap/retrofit/check plus a plugin that registers skills and bootstrap.",
+  "type": "module",
+  "bin": {
+    "ith-rin": "./bin/ith-rin.mjs"
+  },
+  "main": "./index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./cli": "./bin/ith-rin.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "index.mjs",
+    "assets",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "opencode",
+    "ai",
+    "agents",
+    "skills",
+    "workflow",
+    "ith-rin-ai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinhh0x1l/ith-rin-ai.git"
+  },
+  "license": "UNLICENSED"
+}
